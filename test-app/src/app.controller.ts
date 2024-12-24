@@ -4,18 +4,10 @@ import { AmqpConnection } from '@golevelup/nestjs-rabbitmq';
 
 @Controller()
 export class AppController {
-  constructor(
-    private readonly appService: AppService,
-    private readonly amqpConnection: AmqpConnection,
-  ) {}
-
-  @Get()
-  getHello() {
-    return this.appService.send_test('lkjlk');
-  }
+  constructor(private readonly appService: AppService) {}
 
   @Post()
-  sendMessage(@Body() data: { text: string }) {
-    this.amqpConnection.publish('', 'test', data.text);
+  async sendMessage(@Body() data: { text: string }) {
+    await this.appService.send_test(data.text);
   }
 }

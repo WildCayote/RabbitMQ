@@ -7,19 +7,6 @@ import { RabbitMQModule } from '@golevelup/nestjs-rabbitmq';
 
 @Module({
   imports: [
-    ClientsModule.register([
-      {
-        name: 'TEST_SERVICE',
-        transport: Transport.RMQ,
-        options: {
-          urls: ['amqp://localhost:5672'],
-          queue: 'test',
-          queueOptions: {
-            durable: true,
-          },
-        },
-      },
-    ]),
     RabbitExampleModuleModule,
     RabbitMQModule.forRoot(RabbitMQModule, {
       exchanges: [
