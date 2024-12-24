@@ -16,7 +16,7 @@ print(message)
 
 # declaring a queue before sending a message, if the queue doesn't exist 
 # rabbitmq simply drops the message
-channel.queue_declare(queue='test')
+channel.queue_declare(queue='test', durable=True)
 
 # now we can publish a message on that queue
 channel.basic_publish(
